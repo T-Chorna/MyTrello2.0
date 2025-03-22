@@ -1,0 +1,84 @@
+@use '../../variables' as vars;
+@use '../../mixins' as mixins;
+@use "sass:color";
+
+html{
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #575757;
+
+    @include mixins.respond-to(md) {
+      font-size: 16px;
+    }
+    @include mixins.respond-to(xl) {
+      font-size: 18px;
+    }
+    
+}
+
+body{
+    margin: 0;
+}
+
+.board-page{
+    max-width: 1440px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin:auto;
+    padding: 0 120px;
+    background-color: vars.$background-color;
+    position: relative;
+
+    header{
+        @include mixins.header-style();
+    }
+
+    h1{
+        background-color: vars.$main-color-dark-blue;
+        margin: 0 -120px;
+        text-align: center;
+        color: #fff;
+    }
+
+    .add-button{
+        position: absolute;
+        bottom: 40px;
+        right: 120px;
+        background-color: vars.$main-color-dark-blue-translucent;
+        border: none;
+        padding: 8px 16px;
+        font-size: 1em;
+        font-weight: 500;
+        color: #fff;
+        cursor: pointer;
+    }
+    .add-button:hover{
+        background-color: vars.$main-color-dark-blue;
+        // box-shadow: vars.$button-shadow;
+    }
+
+    ul{
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+
+        
+
+        li{
+            width: 15vw;
+            border: 1px solid vars.$main-color-dark-blue;
+            padding: 32px 20px;
+            background-color: rgba(255, 107, 0, 10%);
+        }
+
+        ol{
+            padding: 0;
+            li{
+                border: none;
+                padding: 0;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,41 @@
+@use './variables' as vars;
+
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == xs {
+      @media (min-width: 320px) { @content; }
+    } @else if $breakpoint == sm {
+      @media (min-width: 576px) { @content; }
+    } @else if $breakpoint == md {
+      @media (min-width: 768px) { @content; }
+    } @else if $breakpoint == lg {
+      @media (min-width: 1024px) { @content; }
+    } @else if $breakpoint == xl {
+      @media (min-width: 1200px) { @content; }
+    }
+}
+
+@mixin header-style(){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    // .logo-img{
+    //     height: 84px;
+    // }
+    a{
+        height: 85px;
+    }
+
+    button{    
+        font-size: 32px;
+        font-weight: 400;
+        padding: 8px 16px;
+        border: none;
+        background-color: vars.$background-color;
+        cursor: pointer;
+    }
+
+    button:hover{
+        box-shadow: vars.$button-shadow;
+    }
+}

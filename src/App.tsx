@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Board } from "./pages/Board/Board";
+import  Board from "./pages/Board/Board";
 
 function App() {
   return (
