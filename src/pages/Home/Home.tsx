@@ -1,19 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import Logo from "../components/Logo";
 import Board from "./components/Board/Board";
 import styles from'./Home.module.scss';
 import { Link } from "react-router-dom";
+import { getAllBoards } from "../../api/request";
+import { HomePageBoard } from "../../common/interfaces/HomePageBoard";
 
 
-const componentData = {boards: [
-    {id: 1, title: "покупки", custom: {background: "red"}},
-    {id: 2, title: "підготовка до весілля", custom: {background: "green"}},
-    {id: 3, title: "розробка інтернет-магазину", custom: {background: "blue"}},
-    {id: 4, title: "курс по просуванню у соцмережах", custom: {background: "grey"}}
-]}
 const Home = () => {
-    const [boards] = useState(componentData.boards);
+    const [boards, setBoards] = useState<HomePageBoard[]>([]);
+
+    const updateInformAboutBoards = async () => {
+      const allBoards = await getAllBoards();
+      console.log(allBoards);
+      setBoards(allBoards);
+    }
+
+    useEffect(() => {
+      updateInformAboutBoards();
+    }, []);
+
     return (
         <div className={styles['home-page']}>
           <header>
@@ -23,7 +30,7 @@ const Home = () => {
             <h1>Головна</h1>
             <ul>
               {boards.map(({id, title}) =>{
-                return <li><Link to={`/board/${id}`}><Board key={id} title={title}/></Link></li>
+                return <li key={id}><Link to={`/board/${id}`}><Board title={title}/></Link></li>
                 })}
             </ul>
             
